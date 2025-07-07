@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🌦️ SkyCast</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.65);
+            z-index: 0;
+        }
+
+        #main-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 8px #fff8;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+            transition: box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #3498db;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #217dbb;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 1.5rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+            margin-top: 1.5rem;
+            animation: fadeIn 0.7s;
+            transition: box-shadow 0.2s, transform 0.2s;
+            backdrop-filter: blur(8px);
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 40px rgba(44, 62, 80, 0.22);
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #2980b9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .weather-emoji {
+            font-size: 2.5rem;
+            animation: bounce 1.2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-8px) scale(1.15);
+            }
+        }
+
+        .card p strong {
+            color: #217dbb;
+        }
+
+        .forecast {
+            background-color: #f4faffcc;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            margin-top: 1.2rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .forecast h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .forecast ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .forecast li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #e1eaf4;
+        }
+
+        .forecast li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: #555;
+            font-size: 1rem;
+            opacity: 0.8;
+            text-shadow: 0 1px 4px #fff8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .alert-box {
+            background-color: #ffefef;
+            border-left: 5px solid #e74c3c;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.1);
+            animation: fadeIn 0.6s;
+        }
+
+        .alert-box h3 {
+            color: #c0392b;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .alert-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .alert-box li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f5c6cb;
+            font-size: 0.95rem;
+        }
+
+        .alert-box li:last-child {
+            border-bottom: none;
+        }
+
+        .alert-box strong {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<script>
+    function startVoice() {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert("Speech recognition not supported. Try using Chrome browser.");
+            return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-US";
+        recognition.interimResults = false;
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById("cityInput").value = transcript;
+        };
+
+        recognition.onerror = function (event) {
+            alert("Error during voice input. Try again.");
+        };
+
+        recognition.start();
+    }
+</script>
+
+<body>
+    <div id="main-content">
+        <h1>🌦️  SkyCast</h1>
+
+        <form method="post">
+            <input type="text" name="city" id="cityInput" placeholder="Enter city name..." required>
+            <button type="submit">Check Weather</button>
+            <button type="button" onclick="startVoice()">🎤 Speak</button>
+        </form>
+
+
+        {% if error %}
+        <p class="error">❌ {{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+        <div class="card">
+            <h2><span class="weather-emoji">{{ weather.emoji }}</span> {{ weather.condition }} in {{ weather.location }}
+            </h2>
+            <p><strong>📍 Timezone:</strong> {{ weather.tz }} | <strong>🕒 Local Time:</strong> {{ weather.localtime }}
+            </p>
+            <p>{{ weather.status }}</p>
+            <p><strong>🌡 Temp:</strong> <span style="color:#e67e22">{{ weather.temp_c }}°C</span> (<span
+                    style="color:#e67e22">{{ weather.temp_f }}°F</span>) | <strong>Feels Like:</strong> {{
+                weather.feels_c }}°C / {{ weather.feels_f }}°F</p>
+            <p><strong>🔺 Max:</strong> {{ weather.max_temp }}°C | <strong>🔻 Min:</strong> {{ weather.min_temp }}°C</p>
+            <p><strong>💧 Humidity:</strong> {{ weather.humidity }}% | <strong>🌬 Wind:</strong> {{ weather.wind }} km/h
+            </p>
+            <p><strong>🌅 Sunrise:</strong> {{ weather.sunrise }} | <strong>🌇 Sunset:</strong> {{ weather.sunset }}</p>
+            <p><strong>☔ Rain:</strong> {{ weather.rain }} | <strong>❄️ Snow:</strong> {{ weather.snow }}</p>
+            <p><strong>🌫 AQI:</strong> {{ weather.aqi }} | <strong>☀️ UV Index:</strong> {{ weather.uv }}</p>
+            <p><strong>📆 Last Updated:</strong> {{ weather.updated }}</p>
+
+
+
+            <div class="forecast">
+                <h3>📅 Upcoming Forecast:</h3>
+                <ul>
+                    {% for day in weather.forecast_next %}
+                    <li>{{ day }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if weather.alerts and weather.alerts|length > 0 %}
+        <div class="alert-box">
+            <h3>🚨 Weather Alerts</h3>
+            <ul>
+                {% for a in weather.alerts %}
+                {% if a.event != "Test Alert" %}
+                <li>
+                    <span style="font-size:1.2em;">⚠️</span>
+                    <strong>{{ a.event }}:</strong>
+                    <span style="color:#c0392b; font-weight:600;">{{ a.headline }}</span>
+                    <br>
+                    <span style="color:#555;">{{ a.desc }}</span>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {# If all alerts are test alerts, show a friendly message #}
+                {% if weather.alerts|selectattr("event", "equalto", "Test Alert")|list|length == weather.alerts|length
+                %}
+                <li>
+                    <span style="font-size:1.2em;">ℹ️</span>
+                    <strong>No active weather alerts for this city.</strong>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+
+
+        <footer>
+            Made with ❤️ by  SkyCast &middot; Stay safe and enjoy your day!
+        </footer>
+    </div>
+</body>
+
+</html>
