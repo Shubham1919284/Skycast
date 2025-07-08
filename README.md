@@ -9,7 +9,7 @@ It combines real-time weather data with a clean UI, emoji-enhanced display, and 
 
 ## 🖼️ Screenshots
 
-| UI Home | Forecast View | Weather Alerts | Voice Input |
+| UI Home | Forecast View | Voice Input | Weather Alerts |
 |--------|----------------|----------------|-------------|
 | ![UI](./Screenshot%202025-07-07%20124638.png) | ![Forecast](./Screenshot%202025-07-07%20124702.png) | ![Alert](./Screenshot%202025-07-07%20124834.png) | ![Voice](./Screenshot%202025-07-07%20124851.png) |
 
