@@ -61,9 +61,6 @@ skycast/
 └── README.md
 
 
----
-
-
 ## ⚙️ How to Run the Project
 
 > Follow these steps to run the Flask-based SkyCast app locally:
@@ -116,3 +113,14 @@ Made with ❤️ by [Your Name]
 For questions, feedback, or collaborations, feel free to connect on LinkedIn.
 
 Stay safe, stay informed — with SkyCast ⛅
+
+---
+
+## 👨‍💻 Author
+
+**Shubham Kumar Jha**  
+🎓 BTech CSE (Data Science), Gulzar Group of Institutes (PTU)
+📧 Email: sk1919284@gmail.com
+🔗 LinkedIn
+💻 GitHub
+
