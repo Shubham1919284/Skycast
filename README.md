@@ -63,14 +63,24 @@ skycast/
 
 ---
 
-## ⚙️ How to Run
 
-### 🔧 Step 1: Install dependencies
+## ⚙️ How to Run the Project
+
+> Follow these steps to run the Flask-based SkyCast app locally:
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/skycast.git
+cd skycast
+
+2.  Install dependencies
 ```bash
 pip install -r requirements.txt
 
+3. Replace API_KEY
 API_KEY = "your_actual_weatherapi_key"
 
+4. Run The File
 python app.py
 
 Open http://127.0.0.1:5000 in your browser.
