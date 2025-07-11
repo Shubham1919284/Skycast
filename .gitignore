@@ -1,0 +1,51 @@
+# === Python general ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.sqlite3
+*.db
+
+# === Flask-specific ===
+instance/
+*.log
+
+# === Environment ===
+env/
+venv/
+ENV/
+VENV/
+env.bak/
+venv.bak/
+
+# === System files ===
+.DS_Store
+Thumbs.db
+
+# === API key / config ===
+config.py
+
+# === VS Code / IDE files ===
+.vscode/
+.idea/
+*.swp
+
+# === PyInstaller ===
+*.spec
+dist/
+build/
+
+# === macOS/Linux ===
+*.egg-info/
+.eggs/
+*.so
+
+# === Tests/cache ===
+.tox/
+.pytest_cache/
+.cache/
+coverage/
+
+# === Jupyter (if any) ===
+.ipynb_checkpoints/
