@@ -66,7 +66,7 @@ skycast/
 > Follow these steps to run the Flask-based SkyCast app locally:
 
 1. **Clone the repository**
-```bash
+   ```bash
 git clone https://github.com/your-username/skycast.git
 cd skycast
 
