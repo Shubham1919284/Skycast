@@ -75,13 +75,13 @@ cd skycast
  ```bash
 pip install -r requirements.txt
 ```
-```bash
 3. Replace API_KEY
+```bash
 API_KEY = "your_actual_weatherapi_key"
 ```
 
-```bash
 4. Run The File
+```bash
 python app.py
 ```
 
