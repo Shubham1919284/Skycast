@@ -69,17 +69,23 @@ skycast/
  ```bash
 git clone https://github.com/your-username/skycast.git
 cd skycast
+```
 
 2.  Install dependencies
  ```bash
 pip install -r requirements.txt
-
+```
+```bash
 3. Replace API_KEY
 API_KEY = "your_actual_weatherapi_key"
+```
 
+```bash
 4. Run The File
 python app.py
+```
 
+---
 Open http://127.0.0.1:5000 in your browser.
 
 -----
