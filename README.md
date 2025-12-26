@@ -115,7 +115,7 @@ Feel free to explore, enhance, or build upon SkyCast for your own weather-based 
 ----
 
 👋 Author
-Made with ❤️ by [Your Name]
+Made with ❤️ by [Shubham Kumar Jha]
 For questions, feedback, or collaborations, feel free to connect on LinkedIn.
 
 Stay safe, stay informed — with SkyCast ⛅
@@ -127,6 +127,5 @@ Stay safe, stay informed — with SkyCast ⛅
 **Shubham Kumar Jha**  
 🎓 BTech CSE (Data Science), Gulzar Group of Institutes (PTU)
 📧 Email: sk1919284@gmail.com
-🔗 LinkedIn
-💻 GitHub
-
+- 🔗 [LinkedIn – Shubham Kumar Jha](https://www.linkedin.com/in/shubham-kumar-jha-1a2b3c)  
+- 💻 [GitHub – Shubham1919284](https://github.com/Shubham1919284)  
